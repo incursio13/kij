@@ -220,11 +220,13 @@ def DES():
             R.append(XOR(R[x-1],PB).zfill(32))
         
 def ENCRYPT(bin_iv):
+    #iv akan masuk initial permutation menjadi L0 dan R0
     dummy = bin_plaintext[i]
     bin_plaintext[i] = bin_iv
     
     DES()
     
+    #hasil DES di XOR kan dengan plain text untuk menghasilkan chiper text
     dummy = XOR(dummy,IP_INV(R[16]+R[15])).zfill(64)
     hasil.append(dummy)
     
