@@ -108,19 +108,30 @@ def string2binary(string):
 def hex2binary():
     "{0:0b}".format(int('5f',16))
     return None
-    
+
+#==============================================================================
+# Lakukan Initial Permutation (IP) pada bit plaintext menggunakan tabel IP
+#==============================================================================
 def IP(i):
     temp_L0_R0 = ''            
     for x in range(len(ip)):
         temp_L0_R0 += bin_plaintext[i][ip[x]-1]
     return temp_L0_R0[:len(ip)/2], temp_L0_R0[len(ip)/2:]
     
+#==============================================================================
+# Generate kunci yang akan digunakanuntuk mengenkripsi plaintext dengan menggunakan 
+# tabel permutasi kompresi PC-1, pada langkah ini terjadi kompresi dengan membuang 
+# 1 bit masing-masing blok kunci dari 64 bit menjadi 56 bit.
+#==============================================================================
 def PC1():  
     temp_C_D = ''
     for x in range(len(pc1)):
         temp_C_D += bin_key[pc1[x]-1]
     return temp_C_D[:len(pc1)/2], temp_C_D[len(pc1)/2:]
-  
+    
+#==============================================================================
+#   Lakukan pergeseran kiri (Left Shift) pada C0 dan D0
+#==============================================================================
 def LEFT_ROT(C0,D0):
     for x in left_rotations:
         C0 = C0[x:]+C0[:x]
@@ -128,6 +139,10 @@ def LEFT_ROT(C0,D0):
         K.append(PC2(C0,D0))
     return None
     
+#==============================================================================
+# Setiap hasil putaran digabungkan kembali menjadi CiDi dan diinput kedalam tabel 
+# Permutation Compression 2 (PC-2) dan terjadi kompresi data CiDi 56 bit menjadi CiDi 48 bit    
+#==============================================================================
 def PC2(L, R):         
     K0 = L+R         
     K = ''                    
@@ -135,6 +150,10 @@ def PC2(L, R):
         K += K0[pc2[x]-1]
     return K
 
+#==============================================================================
+# meng-ekspansi data Ri-1 32 bit menjadi Ri 48 bit sebanyak 16 kali putaran dengan 
+# nilai perputaran 1<= i <=16 menggunakan Tabel Ekspansi (E)
+#==============================================================================
 def EXPANSI(E0):
     Eks = ''                    
     for x in range(len(expansion)):
@@ -146,6 +165,11 @@ def XOR(X, Z):
     c = "{0:0b}".format(c)
     return c
     
+#==============================================================================
+# Setiap Vektor Ai disubstitusikan kedelapan buah S-Box(Substitution Box), 
+# dimana blok pertama disubstitusikan dengan S1, blok kedua dengan S2 dan 
+# seterusnya dan menghasilkan output vektor Bi 32 bit.    
+#==============================================================================
 def SBOXES(A):    
     count = 0
     B = ''
@@ -153,16 +177,22 @@ def SBOXES(A):
         a = int(A[x]+A[x+5],2)
         b = int(A[x+1:x+5],2)
         B += "{0:0b}".format(sboxes[count][a][b]).zfill(4)
-        count += 1
- 
+        count += 1 
     return B
 
+#==============================================================================
+#  memutasikan bit vektor Bi menggunakan tabel P-Box, kemudian dikelompokkan 
+# menjadi 4 blok dimana tiap-tiap blok memiliki 32 bit data.
+#==============================================================================
 def P_BOX(B):
     PB = ''                    
     for x in range(len(p_box)):
         PB += B[p_box[x]-1]
     return PB
-   
+    
+#==============================================================================
+# permutasikan untuk terakhir kali dengan tabel Invers Initial Permutasi(IP-1)    
+#==============================================================================
 def IP_INV(X):   
     chiper = ''                    
     for x in range(len(ip_inv)):
@@ -191,49 +221,24 @@ def ENCRYPT(bin_iv):
     iterasi_add = 1
 
     dummy = bin_plaintext[i]
-#    bin_plaintext[i] = XOR(bin_plaintext[i],bin_iv).zfill(64)
     bin_plaintext[i] = bin_iv
     
     DES(iterasi, iterasi_add)
     
     dummy = XOR(dummy,IP_INV(R[16]+R[15])).zfill(64)
-    chiper_encrypt.append(dummy)
+    hasil.append(dummy)
     return IP_INV(R[16]+R[15])
-    
-def DECRYPT():
-    iterasi = 0
-    iterasi_add = 1
-    
-    dummy = bin_plaintext[i]
-    bin_plaintext[i] = bin_iv
-
-    DES(iterasi, iterasi_add)         
-    
-    dummy = XOR(dummy,IP_INV(R[16]+R[15])).zfill(64)
-    text_decrypt.append(dummy)
-#    text_decrypt[i]= XOR(text_decrypt[i],bin_iv).zfill(64)
-    
-    return IP_INV(R[16]+R[15])    
-    
-def PADDING():
-    return None
     
 if __name__ == '__main__':
     ip, pc1, pc2, expansion, sboxes, p_box, left_rotations, ip_inv=inisialisasi()
-    mode='decrypt'
-#    mode = raw_input("encrypt/decrypt : ")
-    with open('hasil.txt', 'rb') as f:
+    mode='encrypt'
+    mode = raw_input("encrypt/decrypt : ")
+    file_data = raw_input("file : ")
+    with open(file_data, 'rb') as f:
         data = f.read()
 
-    if mode == 'encrypt' or mode == 'ENCRYPT' :
+    if mode == 'encrypt' or mode == 'decrypt' :
         bin_plaintext = ''
-#        temp = str(8-len(data)%8)
-#        for x in range(len(data)%8,8):
-#            data += str(temp)
-        data = [data[i:i+8] for i in range(0, len(data), 8) ]
-        bin_plaintext = [string2binary(x) for x in data]
-    elif mode == 'decrypt' or mode == 'DECRYPT' :
-        bin_plaintext=''
         data = [data[i:i+8] for i in range(0, len(data), 8) ]
         bin_plaintext = [string2binary(x) for x in data]
     else:
@@ -243,34 +248,18 @@ if __name__ == '__main__':
     IV = '12345678'
     bin_iv = string2binary(IV)
     bin_key = string2binary(key)      
-    chiper_encrypt = []
-    text_decrypt = []    
+    hasil = []   
     
     for i in range(len(bin_plaintext)):
         K = []
-        R = []
-        if mode == 'encrypt' or mode == 'ENCRYPT' :
-            bin_iv = ENCRYPT(bin_iv)
-        elif mode == 'decrypt' or mode == 'DECRYPT' :
-            bin_iv = DECRYPT()
+        R = []        
+        bin_iv = ENCRYPT(bin_iv)        
             
     if mode == 'encrypt' or mode == 'ENCRYPT' :
-        h = ''.join(binary2string(x) for x in chiper_encrypt)
-        print h
+        hasil = ''.join(binary2string(x) for x in hasil)
+        print hasil
         with open('hasil.txt', 'wb') as f:
-            data = f.write(''.join(binary2string(x) for x in chiper_encrypt))
+            data = f.write(hasil)
     elif mode == 'decrypt' or mode == 'DECRYPT' :
-        h = ''.join(binary2string(x) for x in text_decrypt)
-#        valid = True
-#        if h[len(h)-1].isdigit():
-#            temp = int(h[len(h)-1])
-#        for x in range(len(h),len(h)-temp,-1):            
-#            if h[x-1].isdigit()==False or int(h[x-1]) != temp:
-#                valid = False
-#                break
-#        else:
-#            valid = False
-#        if valid == True:
-#            h = h[:len(h)-temp]
-        
-        print h
+        hasil = ''.join(binary2string(x) for x in hasil)        
+        print hasil
