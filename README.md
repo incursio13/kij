@@ -1,4 +1,10 @@
-# Pengertian DES
+# Tugas 1 - Implementasi Algoritma DES Menggunakan Metode OBF
+
+Andreas Galang Anugrah  - 5114100153
+Riyadlatin Nufus        - 5114100151
+
+# Pendahuluan
+
 DES (Data Encryption Standard) adalah algoritma cipher blok yang populer karena dijadikan standard algoritma enkripsi kunci-simetri.
 
 DES termasuk ke dalam sistem kriptografi simetri dan tergolong jenis cipher blok. DES beroperasi pada ukuran blok 64 bit. 
