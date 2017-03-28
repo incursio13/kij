@@ -199,7 +199,7 @@ def IP_INV(X):
         chiper += X[ip_inv[x]-1]
     return chiper 
     
-def DES(iterasi, iterasi_add):
+def DES():
     L0, R0 = IP(i)
     R.append(R0)
     C0, D0 = PC1()
@@ -207,26 +207,28 @@ def DES(iterasi, iterasi_add):
             
     for x in range(16):    
         E = EXPANSI(R[x])
-        A = XOR(E,K[iterasi]).zfill(48)
+        # nilai Ai didapat dari XOR dari nilai hasil ekspansi nilai Ri dan nilai Ki
+        A = XOR(E,K[x]).zfill(48) 
         B = SBOXES(A)
         PB = P_BOX(B)
+        
+        # Hasil P(Bi) kemudian di XOR kan dengan Li-1 untuk mendapatkan nilai Ri.
+        # Sedangkan nilai Li sendiri diperoleh dari Nilai Ri-1 untuk nilai 1 <= i <= 16
         if x == 0:
             R.append(XOR(L0,PB).zfill(32))
         else:
             R.append(XOR(R[x-1],PB).zfill(32))
-        iterasi += iterasi_add
         
 def ENCRYPT(bin_iv):
-    iterasi = 0
-    iterasi_add = 1
-
     dummy = bin_plaintext[i]
     bin_plaintext[i] = bin_iv
     
-    DES(iterasi, iterasi_add)
+    DES()
     
     dummy = XOR(dummy,IP_INV(R[16]+R[15])).zfill(64)
     hasil.append(dummy)
+    
+    #Hasil DES menjadi IV yang baru untuk enkripsi blok selanjutnya
     return IP_INV(R[16]+R[15])
     
 if __name__ == '__main__':
