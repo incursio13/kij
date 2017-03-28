@@ -47,6 +47,6 @@ Adapun langkah-langkah implementasi algoritma DES dengan mode OFB adalah sebagai
 
   Hasil P(Bi) kemudian di XOR kan dengan Li-1 untuk mendapatkan nilai Ri. Dimana nilai Li diperoleh dari Nilai Ri-1 untuk nilai 1 <= i  <= 16.
 - Mempermutasikan untuk terakhir kali dengan tabel Invers Initial Permutasi(IP-1)
-- Hasil DES menjadi IV yang baru untuk enkripsi blok selanjutnya(OFB). Lalu hasil DES di XOR kan dengan plain text untuk menghasilkan chiper text.
+- Hasil DES menjadi IV yang baru untuk enkripsi blok selanjutnya. Lalu hasil DES di XOR kan dengan plain text untuk menghasilkan chiper text.
 
 
