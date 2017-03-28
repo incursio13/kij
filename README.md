@@ -38,7 +38,9 @@ Adapun langkah-langkah implementasi algoritma DES dengan mode OFB adalah sebagai
 
       Hasil                 : 1	1	0	0	1
 - Mengenerate kunci yang akan digunakan untuk mengenkripsi plaintext dengan menggunakan tabel permutasi kompresi PC-1, pada langkah ini terjadi kompresi dengan membuang 1 bit masing-masing blok kunci dari 64 bit menjadi 56 bit. Kemudian pecah hasilnya menjadi dua bagian, yaitu C0 dan D0.
-- Melakukan pergeseran kiri (Left Shift) pada C0 dan D0, sebanyak jumlah pergeseran(kali putaran) yang telah ditentukan pada tabel.Selanjutnya, setiap hasil putaran digabungkan kembali menjadi CiDi dan diinput kedalam tabel Permutation Compression 2 (PC-2) dan data CiDi 56 bit dikompres menjadi CiDi 48 bit.
+- Melakukan pergeseran kiri (Left Shift) pada C0 dan D0, sebanyak jumlah pergeseran(kali putaran) yang telah ditentukan pada tabel.
+
+  Selanjutnya, setiap hasil putaran digabungkan kembali menjadi CiDi dan diinput kedalam tabel Permutation Compression 2 (PC-2) dan data CiDi 56 bit dikompres menjadi CiDi 48 bit.
 - Mengekspansi data Ri-1 32 bit menjadi Ri 48 bit sebanyak 16 kali putaran dengan nilai perputaran 1<= i <=16 menggunakan Tabel Ekspansi (E). 
 
   Selanjutnya, hasil dari ekspansi tersebut (Ri) di XOR kan dengan Ki sehingga menghasilkan nilai Ai .
