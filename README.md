@@ -1,4 +1,4 @@
-# Tugas 1 - Implementasi Algoritma DES Menggunakan Metode OBF
+# Tugas 1 - Implementasi Algoritma DES Dengan Mode Operasi OBF
 
 Kelompok F09
 
