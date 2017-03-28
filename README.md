@@ -11,7 +11,7 @@ Berdasarkan kondisi tersebut, pengiriman data dan penyimpanan data melalui media
 
 Enkripsi dilakukan pada saat pengiriman dengan cara mengubah data asli menjadi data rahasia sedangkan dekripsi dilakukan pada saat penerimaan dengan cara mengubah data rahasia menjadi data asli. Jadi data yang dikirimkan selama proses pengiriman adalah data rahasia, sehingga data asli tidak dapat diketahui oleh pihak yang tidak berkepentingan. Data asli hanya dapat diketahui oleh penerima dengan menggunakan kunci rahasia.
 
-Terdapat banyak algoritma untuk mengimplementasikan teknik enkripsi, salah satunya adalah DES (Data Encryption Standard), dan kali ini kita menggunakan mode operasi OBF (Output Feedback).
+Terdapat banyak algoritma untuk mengimplementasikan teknik enkripsi, salah satunya adalah DES (Data Encryption Standard), dan kali ini kita menggunakan mode operasi OFB (Output Feedback).
 
 
 ## Dasar Teori
