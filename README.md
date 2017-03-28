@@ -1,6 +1,7 @@
 # Tugas 1 - Implementasi Algoritma DES Menggunakan Metode OBF
 
 Kelompok F09
+
 Andreas Galang Anugrah  - 5114100153
 Riyadlatin Nufus        - 5114100151
 
