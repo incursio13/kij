@@ -2,8 +2,8 @@
 
 Kelompok F09
 
-- Andreas Galang Anugrah (5114100153)
 - Riyadlatin Nufus (5114100151)
+- Andreas Galang Anugrah (5114100153)
 ## Pendahuluan
 Pada era globalisasi sekarang ini, keamanan dan kerahasiaan data pada jaringan komputer menjadi isu yang sangat penting dan terus berkembang. Kemajuan teknologi informasi tidak hanya menimbulkan dampak positif, melainkan juga dampak negatif. Kejahatan-kejahatan baru bermunculan, yang semula menggunakan teknik biasa, sekarang menggunakan metode dan teknik yang semakin canggih.
 
