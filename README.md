@@ -75,4 +75,6 @@ Adapun langkah-langkah implementasi algoritma DES dengan mode OFB adalah sebagai
 - Mempermutasikan untuk terakhir kali dengan tabel Invers Initial Permutasi(IP-1)
 - Hasil DES menjadi IV yang baru untuk enkripsi blok selanjutnya. Lalu hasil DES di XOR kan dengan plain text untuk menghasilkan chiper text.
 
-
+# Referensi : 
+http://octarapribadi.blogspot.co.id/2012/10/contoh-enkripsi-dengan-algoritma-des.html
+https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Initialization_vector_.28IV.29
