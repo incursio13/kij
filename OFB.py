@@ -109,29 +109,18 @@ def string2binary(string):
 #    "{0:0b}".format(int('5f',16))
 #    return None
 
-#==============================================================================
-# Lakukan Initial Permutation (IP) pada bit plaintext menggunakan tabel IP
-#==============================================================================
 def IP(i):
     temp_L0_R0 = ''            
     for x in range(len(ip)):
         temp_L0_R0 += bin_plaintext[i][ip[x]-1]
     return temp_L0_R0[:len(ip)/2], temp_L0_R0[len(ip)/2:]
     
-#==============================================================================
-# Generate kunci yang akan digunakanuntuk mengenkripsi plaintext dengan menggunakan 
-# tabel permutasi kompresi PC-1, pada langkah ini terjadi kompresi dengan membuang 
-# 1 bit masing-masing blok kunci dari 64 bit menjadi 56 bit.
-#==============================================================================
 def PC1():  
     temp_C_D = ''
     for x in range(len(pc1)):
         temp_C_D += bin_key[pc1[x]-1]
     return temp_C_D[:len(pc1)/2], temp_C_D[len(pc1)/2:]
     
-#==============================================================================
-#   Lakukan pergeseran kiri (Left Shift) pada C0 dan D0
-#==============================================================================
 def LEFT_ROT(C0,D0):
     for x in left_rotations:
         C0 = C0[x:]+C0[:x]
@@ -139,10 +128,6 @@ def LEFT_ROT(C0,D0):
         K.append(PC2(C0,D0))
     return None
     
-#==============================================================================
-# Setiap hasil putaran digabungkan kembali menjadi CiDi dan diinput kedalam tabel 
-# Permutation Compression 2 (PC-2) dan terjadi kompresi data CiDi 56 bit menjadi CiDi 48 bit    
-#==============================================================================
 def PC2(L, R):         
     K0 = L+R         
     K = ''                    
@@ -150,10 +135,6 @@ def PC2(L, R):
         K += K0[pc2[x]-1]
     return K
 
-#==============================================================================
-# meng-ekspansi data Ri-1 32 bit menjadi Ri 48 bit sebanyak 16 kali putaran dengan 
-# nilai perputaran 1<= i <=16 menggunakan Tabel Ekspansi (E)
-#==============================================================================
 def EXPANSI(E0):
     Eks = ''                    
     for x in range(len(expansion)):
@@ -165,11 +146,6 @@ def XOR(X, Z):
     c = "{0:0b}".format(c)
     return c
     
-#==============================================================================
-# Setiap Vektor Ai disubstitusikan kedelapan buah S-Box(Substitution Box), 
-# dimana blok pertama disubstitusikan dengan S1, blok kedua dengan S2 dan 
-# seterusnya dan menghasilkan output vektor Bi 32 bit.    
-#==============================================================================
 def SBOXES(A):    
     count = 0
     B = ''
@@ -180,19 +156,12 @@ def SBOXES(A):
         count += 1 
     return B
 
-#==============================================================================
-#  memutasikan bit vektor Bi menggunakan tabel P-Box, kemudian dikelompokkan 
-# menjadi 4 blok dimana tiap-tiap blok memiliki 32 bit data.
-#==============================================================================
 def P_BOX(B):
     PB = ''                    
     for x in range(len(p_box)):
         PB += B[p_box[x]-1]
     return PB
     
-#==============================================================================
-# permutasikan untuk terakhir kali dengan tabel Invers Initial Permutasi(IP-1)    
-#==============================================================================
 def IP_INV(X):   
     chiper = ''                    
     for x in range(len(ip_inv)):
@@ -207,30 +176,25 @@ def DES():
             
     for x in range(16):    
         E = EXPANSI(R[x])
-        # nilai Ai didapat dari XOR dari nilai hasil ekspansi nilai Ri dan nilai Ki
+
         A = XOR(E,K[x]).zfill(48) 
         B = SBOXES(A)
         PB = P_BOX(B)
         
-        # Hasil P(Bi) kemudian di XOR kan dengan Li-1 untuk mendapatkan nilai Ri.
-        # Sedangkan nilai Li sendiri diperoleh dari Nilai Ri-1 untuk nilai 1 <= i <= 16
         if x == 0:
             R.append(XOR(L0,PB).zfill(32))
         else:
             R.append(XOR(R[x-1],PB).zfill(32))
         
 def ENCRYPT(bin_iv):
-    #iv akan masuk initial permutation menjadi L0 dan R0
     dummy = bin_plaintext[i]
     bin_plaintext[i] = bin_iv
     
     DES()
     
-    #hasil DES di XOR kan dengan plain text untuk menghasilkan chiper text
     dummy = XOR(dummy,IP_INV(R[16]+R[15])).zfill(64)
     hasil.append(dummy)
-    
-    #Hasil DES menjadi IV yang baru untuk enkripsi blok selanjutnya
+
     return IP_INV(R[16]+R[15])
     
 if __name__ == '__main__':
