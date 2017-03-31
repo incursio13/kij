@@ -105,9 +105,9 @@ def binary2string(b=None):
 def string2binary(string):
     return  ''.join(format(ord(x), 'b').zfill(8) for x in string)
     
-def hex2binary():
-    "{0:0b}".format(int('5f',16))
-    return None
+#def hex2binary():
+#    "{0:0b}".format(int('5f',16))
+#    return None
 
 #==============================================================================
 # Lakukan Initial Permutation (IP) pada bit plaintext menggunakan tabel IP
@@ -241,17 +241,24 @@ if __name__ == '__main__':
     with open(file_data, 'rb') as f:
         data = f.read()
 
-    if mode == 'encrypt' or mode == 'decrypt' :
+    if mode == 'encrypt' or mode == 'ENCRYPT' :
         bin_plaintext = ''
+        temp = str(8-len(data)%8)
+        for x in range(len(data)%8,8):
+            data += str(temp)
+        data = [data[i:i+8] for i in range(0, len(data), 8) ]
+        bin_plaintext = [string2binary(x) for x in data]
+    elif mode == 'decrypt' or mode == 'DECRYPT' :
+        bin_plaintext=''
         data = [data[i:i+8] for i in range(0, len(data), 8) ]
         bin_plaintext = [string2binary(x) for x in data]
     else:
         print ValueError('Mode salah')
 
-    key = 'inikunci'      
+    key = 'kij123'      
     IV = '12345678'
     bin_iv = string2binary(IV)
-    bin_key = string2binary(key)      
+    bin_key = string2binary(key).zfill(64)
     hasil = []   
     
     for i in range(len(bin_plaintext)):
@@ -265,5 +272,17 @@ if __name__ == '__main__':
         with open('hasil.txt', 'wb') as f:
             data = f.write(hasil)
     elif mode == 'decrypt' or mode == 'DECRYPT' :
-        hasil = ''.join(binary2string(x) for x in hasil)        
-        print hasil
+        h = ''.join(binary2string(x) for x in hasil)
+        valid = True
+        if h[len(h)-1].isdigit():
+            temp = int(h[len(h)-1])
+            for x in range(len(h),len(h)-temp,-1):            
+                if h[x-1].isdigit()==False or int(h[x-1]) != temp:
+                    valid = False
+                    break
+        else:
+            valid = False
+        if valid == True:
+            h = h[:len(h)-temp]
+        
+        print h
