@@ -10,7 +10,7 @@ import sys
 from OFB import *
 
 host = 'localhost'
-port = 50012
+port = 50015
 size = 1024
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((host,port))

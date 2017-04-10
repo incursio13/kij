@@ -14,7 +14,7 @@ from OFB import *
 class Server: 
     def __init__(self): 
         self.host = 'localhost'
-        self.port = 50012
+        self.port = 50015
         self.backlog = 5 
         self.size = 1024 
         self.server = None 
@@ -66,7 +66,7 @@ class Client(threading.Thread):
 
     def run(self): 
         running = 1 
-        print 'waiting client ....\n\n'
+        
         while running: 
             data = self.client.recv(self.size) 
             if data: 
@@ -84,7 +84,7 @@ class Client(threading.Thread):
                 
                 print "client %s : %s" %(self.address, real_data.strip())
                 
-                print '>> ',
+                print '>> %s : ' %(self.address, ),
                 data = sys.stdin.readline()
                 
                 data = str(len(data))+", "+ data    
@@ -99,5 +99,6 @@ class Client(threading.Thread):
 
 if __name__ == "__main__": 
     s = Server()
+    print 'waiting client ....\n\n'
     #counter=0
     s.run()
