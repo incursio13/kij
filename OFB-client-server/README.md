@@ -118,4 +118,6 @@ Pesan dari sender akan di enkrpisi terlebih dahulu sebelum dikirim ke receiver, 
 # Referensi : 
 http://octarapribadi.blogspot.co.id/2012/10/contoh-enkripsi-dengan-algoritma-des.html
 https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Initialization_vector_.28IV.29
+http://rohmancahtkj.blogspot.co.id/2013/07/sniffer-adalah-program-yang-membaca-dan.html
+https://id.wikipedia.org/wiki/Klien-server
 
