@@ -34,14 +34,19 @@ Pada mode OFB, data dienkripsikan dalam unit yang lebih kecil daripada ukuran bl
 ## Implementasi
 **A.	Tahap Pengiriman Pesan Antar Device**
 -	Server membuat socket yang terdiri dari host dan port yang didefinisikan pada program, dan mengatur hanya 5 client yang bisa connect.
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/1a.PNG)
 
 -	Server membuka koneksi ke socket
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/1b.PNG)
 
 -	Client melakukan koneksi ke socket yang dibuka server
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/1c.PNG)
 
 -	Client mengirimkan informasi ke server, dimana teks yang akan dikirim di enkripsi terllebih dahulu
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/1d.PNG)
 
 -	Server menerima informasi yang dikirimkan oleh client, dimana informasi yang telah di enkripsi  sebelumnya didekripsi dulu sebelum sampai di server.
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/1e.PNG)
 
 **B.	Tahap Enkripsi Dekripsi**
 
@@ -98,9 +103,10 @@ Adapun langkah-langkah implementasi algoritma DES dengan mode OFB adalah sebagai
 
 # Testing
 Client dan server dapat saling berkirim pesan seperti gambar berikut
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/d.png)
 
 Pesan dari sender akan di enkrpisi terlebih dahulu sebelum dikirim ke receiver, dan receiver menerima pesan yang telah di dekripsi
-
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/c.png)
 
 # Referensi : 
 http://octarapribadi.blogspot.co.id/2012/10/contoh-enkripsi-dengan-algoritma-des.html
