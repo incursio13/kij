@@ -18,6 +18,7 @@ Terdapat banyak algoritma untuk mengimplementasikan teknik enkripsi, salah satun
 **A. DES (Data Encryption Standard)**
 
 DES termasuk ke dalam sistem kriptografi simetri dan tergolong jenis cipher blok. DES beroperasi pada ukuran blok 64 bit. DES mengenkripsikan 64 bit plainteks menjadi 64 bit cipherteks dengan menggunakan 56 bit kunci internal (internal key) atau upa-kunci (subkey). Kunci internal dibangkitkan dari kunci eksternal (external key) yang panjangnya 64 bit. 
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/global.jpg)
 
 **B.	OFB (Output FeedBack)**
 
