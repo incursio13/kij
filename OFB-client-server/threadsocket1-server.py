@@ -14,7 +14,7 @@ from OFB import *
 class Server: 
     def __init__(self): 
         self.host = ''
-        self.port = 40035
+        self.port = 30005
         self.backlog = 5 
         self.size = 1024 
         self.server = None 
