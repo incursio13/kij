@@ -37,13 +37,49 @@ Pada mode OFB, data dienkripsikan dalam unit yang lebih kecil daripada ukuran bl
 Adapun langkah implementasi Diffie-Hellman key exchange pada DES adalah sebagai berikut:
 - Memilih  bilangan prima  yang  besar, q
   dan  bilangan integer  yang  tidak  melebihi  dari  nilai  q, a dimana kedua bilangan tersebut diketahui secara publik.
+      
+      def primesfrom3to(self):
+              n=5000
+              assert n>=2
+              sieve = np.ones(n/2, dtype=np.bool)
+              for i in xrange(3,int(n**0.5)+1,2):
+                  if sieve[i/2]:
+                      sieve[i*i/2::i] = False
+              z= np.r_[2, 2*np.nonzero(sieve)[0][1::]+1] 
+              temp = random.randint(95,len(z))
+              self.q= z[temp]
+              
+        self.a = 3
+        self.primesfrom3to()
+        self.client.send(str(self.a)) 
+        self.client.send(str(self.q))
+        
 - Server memilih sebuah  bilangan  acak, Xa dimana bilangan ini tidak boleh diketahui oleh orang lain.
+     
+      self.XA = random.randint(1,self.q-1)
+
 - Client memilih sebuah  bilangan  acak, Xb dimana bilangan ini tidak boleh diketahui oleh orang lain.
+
+      XB = random.randint(1,q-1)
+
 - Pengirim menghitung  Ya = a^Xa mod  q.  Bilangan  Ya ini dapat diketahui secara publik.
+
+      self.YA = pow(self.a,self.XA)%self.q
+      self.client.send(str(self.YA))
+
 - Penerima menghitung  Yb = a^Xb mod  q.  Bilangan  Yb ini dapat diketahui secara publik.
+
+      YB = pow(a,XB)%q
+
 - Lakukan pertukaran bilangan Ya dan  Yb  terhadap client dan server.
 - Kemudian Server menghitung key = Yb^Xa mod q.
+
+      self.key = str(pow(self.YB,self.XA) % self.q)
+
 - Client menghitung key = Ya^Xb mod q.
+         
+      key = str(pow(YA,XB)%q)
+      
 - Sehingga client dan server mendapatkan nilai key yang sama.
 
 # Testing
