@@ -16,6 +16,7 @@ Terdapat banyak algoritma untuk mengimplementasikan teknik enkripsi, salah satun
 
 ## Dasar Teori
 **A. Diffie-Hellman**
+
 Diffie-Hellman key exchange adalah metode dimana subyek menukar kunci rahasia melalui media yang tidak amantanpa mengekspos kunci. Metode ini diperlihatkan oleh Dr. W. Diffie dan Dr. M. E. Hellman pada tahun 1976 pada papernya “New Directions in Cryptography”. Metode ini memungkinkan dua pengguna untuk bertukar kunci rahasia melalui media yang tidak aman tanpa kunci tambahan.
 
 Algoritma  ini  tidak  berdasarkan  pada  proses  enkripsi dan  dekripsi,  melainkan  lebih  kepada  proses  matematika yang  dilakukan  untuk  menghasilkan  kunci  rahasia  yang dapat  disebarkan  secara  bebas  tanpa  harus  khawatir karena  kunci  rahasia  tersebut  hanya  dapat  didekripsi hanya  oleh  pengirim  dan  penerima  pesan.  Dasar  dari algoritma  ini  adalah  matematika  dasar  dari  aljabar eksponen dan aritmatika modulus.
