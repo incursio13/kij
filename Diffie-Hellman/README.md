@@ -63,16 +63,16 @@ Adapun langkah implementasi Diffie-Hellman key exchange pada DES adalah sebagai 
 
       XB = random.randint(1,q-1)
 
-- Pengirim menghitung  Ya = a^Xa mod  q.  Bilangan  Ya ini dapat diketahui secara publik.
+- Server menghitung  Ya = a^Xa mod  q.  Bilangan  Ya ini dapat diketahui secara publik.
 
       self.YA = pow(self.a,self.XA)%self.q
       self.client.send(str(self.YA))
 
-- Penerima menghitung  Yb = a^Xb mod  q.  Bilangan  Yb ini dapat diketahui secara publik.
+- Client menghitung  Yb = a^Xb mod  q.  Bilangan  Yb ini dapat diketahui secara publik.
 
       YB = pow(a,XB)%q
 
-- Lakukan pertukaran bilangan Ya dan  Yb  terhadap client dan server.
+- Client dan Server melakukan pertukaran bilangan Ya dan  Yb.
 - Kemudian Server menghitung key = Yb^Xa mod q.
 
       self.key = str(pow(self.YB,self.XA) % self.q)
