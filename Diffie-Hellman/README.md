@@ -97,4 +97,5 @@ http://octarapribadi.blogspot.co.id/2012/10/contoh-enkripsi-dengan-algoritma-des
 https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Initialization_vector_.28IV.29
 https://id.wikipedia.org/wiki/Klien-server
 http://kuliah-hhn.blogspot.co.id/2012/05/cara-kerja-protokol-pertukaran-kunci.html
-
+http://stackoverflow.com/questions/40190849/efficient-finding-primitive-roots-modulo-n-using-python
+http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python/3035188#3035188
