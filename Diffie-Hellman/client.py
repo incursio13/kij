@@ -10,8 +10,8 @@ import sys
 import random
 from OFB import *
 
-host = 'localhost'
-port = 30006
+host = '10.151.44.77'
+port = 50001
 size = 1024
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((host,port))
@@ -35,6 +35,7 @@ while 1:
   
     data = OFB(data,'encrypt', key)
     print 'Decrypt : '+ data
+    print 'key : '+key
     
     s.send(data)
     s.send('~~~')

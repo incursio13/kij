@@ -16,7 +16,7 @@ from OFB import *
 class Server:         
     def __init__(self): 
         self.host = ''
-        self.port = 30006
+        self.port = 50001
         self.backlog = 5 
         self.size = 1024 
         self.server = None 
@@ -106,10 +106,11 @@ class Client(threading.Thread):
                 real_data = OFB(real_data[:len(real_data)-3],'decrypt',self.key)
                 print "client %s : %s" %(self.address, real_data.strip())
                 
-#                print self.key
+                print 'key : '+self.key
                 print '>> %s : ' %(self.address, ),
                 data = raw_input()
                    
+                
                 data = OFB(data,'encrypt', self.key)
                 print 'Decrypt : '+ data
                 
