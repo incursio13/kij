@@ -74,24 +74,36 @@ class Client(threading.Thread):
         while running: 
             sign_data = pickle.loads(self.client.recv(self.size))
             
-            if sign_data: 
-
-                data = pickle.loads(self.client.recv(self.size))    
-
+            if sign_data:                 
+                #verifikasi signature
                 sign_data_in = verifikasi(self.public_key, self.public_key_partner, sign_data)
-                print 'public key : ' + str(self.public_key)
+                print '# public key : ' + str(self.public_key_partner)
                 
+                print '# '+sign_data_in
                 if sign_data_in == 'verifikasi gagal':
+                    self.client.send('')
                     continue
-                
+
+                data = self.client.recv(self.size)                
+                real_data =''
+                real_data += data
+                while real_data[len(real_data)-3:len(real_data)]!='~~~':
+                    data = self.client.recv(self.size)
+                    real_data += data
+                                    
+                data = pickle.loads(real_data)                                
                 real_data = decrypt(self.private_key,data)
-                print '$ client %s : %s' %(self.address, real_data.strip()) 
+                print '# client %s : %s' %(self.address, real_data.strip()) 
                 print '\n'
+                                
+                #ngirim data
                 print '>> %s : ' %(self.address, ),
-                data = raw_input()                   
-                
-                data = encrypt(self.public_key_partner,data)                
-                self.client.send(pickle.dumps(data))
+                data = raw_input()
+                sign_data = sign(self.private_key, self.public_key_partner)
+                data = encrypt(self.public_key_partner,data)
+                self.client.sendall(pickle.dumps(sign_data))
+                self.client.sendall(pickle.dumps(data))
+                self.client.send('~~~')
             else: 
                 self.client.close() 
                 running = 0 

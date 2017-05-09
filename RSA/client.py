@@ -21,7 +21,7 @@ public_key_partner = pickle.loads(s.recv(size))
 
 
 while 1:
-    # read from keyboard
+    # mengirim data
     print '>> ',
     data = sys.stdin.readline()
 
@@ -31,13 +31,30 @@ while 1:
     sign_data = sign(private_key, public_key_partner)
     data = encrypt(public_key_partner, data)
 
-    print 'public key : '+str(public_key_partner)
-    s.send(pickle.dumps(sign_data))
-    s.send(pickle.dumps(data))
+    s.sendall(pickle.dumps(sign_data))
+    s.sendall(pickle.dumps(data))
+    s.send('~~~')
 
-    data = pickle.loads(s.recv(size))
+    #verifikasi signature
+    sign_data = pickle.loads(s.recv(size))        
+    sign_data_in = verifikasi(public_key, public_key_partner, sign_data)
     
+    print '# public key : '+str(public_key_partner)
+    print '# '+sign_data_in    
+    if sign_data_in == 'verifikasi gagal':
+        s.send('')
+        continue
+    
+    #menerima data
+    data = s.recv(size)
+    real_data =''
+    real_data += data
+
+    while real_data[len(real_data)-3:len(real_data)]!='~~~':
+        data = s.recv(size)
+        real_data += data
         
+    data = pickle.loads(real_data)        
     real_data = decrypt(private_key,data)
     print '# server : ' + real_data.strip()
     print '\n'
