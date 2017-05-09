@@ -81,13 +81,6 @@ def verifikasi(public_key, public_key_partner, signature):
     else:
         return 'verifikasi gagal'
     
-        
-    
-#if __name__ == "__main__":
-#    public_key, peivate_key= RSA()
-#    RSA()
-#    
-    
     
 #==============================================================================
 # referensi

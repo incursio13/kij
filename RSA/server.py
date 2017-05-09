@@ -76,33 +76,22 @@ class Client(threading.Thread):
             
             if sign_data: 
 
-#                real_data =''
-#                real_data += data
-
-#                while real_data[len(real_data)-3:len(real_data)]!='~~~':
-#                    data = self.client.recv(self.size)
-#                    real_data += data
                 data = pickle.loads(self.client.recv(self.size))    
-                print sign_data
+
                 sign_data_in = verifikasi(self.public_key, self.public_key_partner, sign_data)
-                print sign_data_in
+                print 'public key : ' + str(self.public_key)
                 
                 if sign_data_in == 'verifikasi gagal':
                     continue
                 
                 real_data = decrypt(self.private_key,data)
-                print "client %s : %s" %(self.address, real_data.strip())
-                
-#                print 'key : '+self.key
+                print '$ client %s : %s' %(self.address, real_data.strip()) 
+                print '\n'
                 print '>> %s : ' %(self.address, ),
-                data = raw_input()
-                   
+                data = raw_input()                   
                 
-                data = encrypt(self.public_key_partner,data)
-#                print 'Decrypt : '+ data
-                
+                data = encrypt(self.public_key_partner,data)                
                 self.client.send(pickle.dumps(data))
-#                self.client.send('~~~')
             else: 
                 self.client.close() 
                 running = 0 

@@ -30,23 +30,17 @@ while 1:
     
     sign_data = sign(private_key, public_key_partner)
     data = encrypt(public_key_partner, data)
-#    print 'Decrypt : '+ str(data)
+
     print 'public key : '+str(public_key_partner)
     s.send(pickle.dumps(sign_data))
     s.send(pickle.dumps(data))
-#    s.send('~~~')
 
     data = pickle.loads(s.recv(size))
     
-#    real_data =''
-#    real_data += data
-
-#    while real_data[len(real_data)-3:len(real_data)]!='~~~':
-#        data = s.recv(size)
-#        real_data += data
         
     real_data = decrypt(private_key,data)
-    print 'server : ' + real_data.strip()
+    print '# server : ' + real_data.strip()
+    print '\n'
     
 s.close()
 
