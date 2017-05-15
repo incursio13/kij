@@ -7,6 +7,7 @@ Created on Mon May 08 13:04:53 2017
 
 import numpy as np
 import hashlib
+import random
 #from fractions import gcd
 
 def egcd(a, b):
@@ -29,9 +30,9 @@ def gcd(a,b):
         a, b = b, a % b
     return a
 
-def primesfrom3to():
+def primes():
         """ Returns a array of primes, p < n """
-        n=5000
+        n=1000000
         assert n>=2
         sieve = np.ones(n/2, dtype=np.bool)
         for i in xrange(3,int(n**0.5)+1,2):
@@ -45,14 +46,14 @@ def primesfrom3to():
         return z[temp], z[temp2], z
         
 def RSA():
-    p, q, z = primesfrom3to()
+    p, q, z = primes()
     n = p * q
     m = (p-1)*(q-1)
-    e = np.random.randint(1, m)
+    e = random.randrange(1, m)
     
     temp = gcd(e, m)
     while temp != 1:
-        e = np.random.randint(1, m)
+        e = random.randrange(1, m)
         temp = gcd(e, m)
         
     d = modinv(e,m);
