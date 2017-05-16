@@ -13,7 +13,7 @@ Enkripsi dilakukan pada saat pengiriman dengan cara mengubah data asli menjadi d
 
 Terdapat banyak algoritma untuk mengimplementasikan teknik enkripsi dekripsi, salah satunya adalah RSA, dimana kunci yang digunakan untuk mengenkripsi berbeda dengan yang digunakan untuk mendekripsi. Kunci yang digunakan untuk mengenkripsi disebut dengan kunci public, dan yang digunakan untuk mendekripsi disebut dengan kunci privat, sehingga dengan begitu maka  pengiriman pesan akan lebih aman.
 
-## Dasar Teori
+e## Dasar Teori
 **A. RSA**
 
 RSA adalah salah satu algoritma kriptografi yang menggunakan konsep kriptografi kunci publik. RSA membutuhkan tiga langkah dalam prosesnya, yaitu pembangkitan kunci, enkripsi, dan dekripsi. Proses enkripsi dan dekripsi merupakan proses yang hampir sama. Jika bilangan acak yang dibangkitkan kuat, maka akan lebih sulit untuk melakukan cracking terhadap pesan. Parameter kuat tidaknya suatu kunci terdapat pada besarnya bilangan acak yang digunakan.
@@ -23,7 +23,7 @@ RSA adalah salah satu algoritma kriptografi yang menggunakan konsep kriptografi 
 Digital Signature adalah bentuk tiruan tanda tangan konvensional ke dalam bentuk digital. Tetapi bukan file scan tanda tangan dikertas. Sebutan digital signature ini sebenarnya konsep. Dalam dunia nyata, tanda tangan digital itu bentuknya adalah rangkaian byte-byte yang jika diperiksa bisa digunakan untuk memeriksa apakah suatu dokumen digital, juga termasuk email, benar berasal dari orang tertentu atau tidak.
 
 **C.  Client Server**
-
+m
 Client Server adalah suatu bentuk arsitektur dimana client adalah perangkat yang menerima yang akan menampilkan dan menjalankan aplikasi (software komputer) dan server adalah perangkat yang menyediakan dan bertindak sebagai pengelola aplikasi, data, dan keamanannya.
 
 **D. Sniffer**
@@ -33,8 +33,10 @@ Sniffer adalah membaca dan menganalisa setiap protokol yang melewati mesin di ma
 Setelah host attacker menjadi host yang berada di tengah-tengah dari dua host yang saling berkomunikasi, kemudian attacker melakukan analisa traffic dengan menjalankan program ethereal. Dengan menganalisa traffic TCP yang sudah tercapture, attacker dapat mengetahui apa saja yang dilakukan oleh host client terhadap host server.
 
 ## Implementasi
-**A. Pembuatan kunci publik dan privat**
+ **A. Pembuatan kunci publik dan privat**
 - Memilih 2 buah bilangan prima p dan q.
+
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/a.PNG)
 
 ![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/1.PNG)
 
@@ -63,7 +65,7 @@ Setelah host attacker menjadi host yang berada di tengah-tengah dari dua host ya
 ![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/6.PNG)
 
 **B. Pengiriman pesan**
-- Sebelum pengirim mengirimkan pesan, pengirim terlebih dahulu membuat digital signature dengan cara mengambil nilai hash dari pesan/data. Fungsi hash yang dipakai yaitu MD5, lalu mengenkrip nilai hash tersebut dengan algoritma enkripsi RSA. Hasil enkripsi hash dengan private key pengirim inilah yang disebut digital signature.
+- Sebelum pengirim mengirimkan pesan, pengirim terlebih dahulu membuat digital signature dengan cara mengambil nilai hash dari publik key penerima. Fungsi hash yang dipakai yaitu MD5, lalu mengenkrip nilai hash tersebut dengan algoritma enkripsi RSA menggunakan privat key pengirim. Hasil enkripsi hash inilah yang disebut digital signature.
 
 ![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b1.PNG)
 
@@ -75,7 +77,7 @@ Setelah host attacker menjadi host yang berada di tengah-tengah dari dua host ya
 
 ![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b4.PNG)
 
-- Penerima melakukan verifikasi digital signature terlebih dahulu, verifikasi dilakukan dengan mendekrip digital signature pesan tersebut dengan public key pengirim kemudian dicocokkan dengan nilai hash bagian pesan/data. Jika hasilnya sama berarti digital signature dianggap valid.
+- Penerima melakukan verifikasi digital signature terlebih dahulu, verifikasi dilakukan dengan mendekrip digital signature tersebut dengan public key pengirim kemudian dicocokkan dengan nilai hash publik key penerima. Jika hasilnya sama berarti digital signature dianggap valid.
 
 ![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb1.PNG)
 
