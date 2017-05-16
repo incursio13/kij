@@ -36,67 +36,67 @@ Setelah host attacker menjadi host yang berada di tengah-tengah dari dua host ya
 **A. Pembuatan kunci publik dan privat**
 - Memilih 2 buah bilangan prima p dan q.
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/1.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/1.PNG)
 
 - Menghitung nilai n = p * q.
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/2.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/2.PNG)
 
 - Menghitung nilai m = (p-1) * (q-1). 
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/3.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/3.PNG)
 
 - Mencari nilai e , dimana e merupakan relatif prima dari m. 
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/4.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/4.PNG)
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/4a.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/4a.PNG)
 
 - Mencari nilai d , yang memenuhi persamaan ed ≡ 1 mod m atau d = e-1 mod m. 
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/5a.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/5a.PNG)
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/5b.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/5b.PNG)
 
 - Kunci public (e , n) dan kunci private (d , n). 
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/6.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/6.PNG)
 
 **B. Pengiriman pesan**
 - Sebelum pengirim mengirimkan pesan, pengirim terlebih dahulu membuat digital signature dengan cara mengambil nilai hash dari pesan/data. Fungsi hash yang dipakai yaitu MD5, lalu mengenkrip nilai hash tersebut dengan algoritma enkripsi RSA. Hasil enkripsi hash dengan private key pengirim inilah yang disebut digital signature.
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b1.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b1.PNG)
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b2.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b2.PNG)
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b3.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b3.PNG)
 
 - Pengirim mengenkripsi pesan dengan kunci publik dan mengirimkannya. Adapun fungsi dekripsi adalah C = M^e mod n
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b4.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b4.PNG)
 
 - Penerima melakukan verifikasi digital signature terlebih dahulu, verifikasi dilakukan dengan mendekrip digital signature pesan tersebut dengan public key pengirim kemudian dicocokkan dengan nilai hash bagian pesan/data. Jika hasilnya sama berarti digital signature dianggap valid.
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb1.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb1.PNG)
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb2.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb2.PNG)
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb3.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb3.PNG)
 
 - Penerima menerima pesan dan mendekripnya dengan kunci privat nya. Adapun fungsi dekripsi adalah M = C^d mod n
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb4.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/bb4.PNG)
 
 # Testing
 Client dan server dapat saling berkirim pesan seperti gambar berikut
 
 Client mengirim pesan kepada server
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/client.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/client.PNG)
 
 Server menerima pesan dan membalas pesan client
 
-![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/server.png)
+![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/server.PNG)
 
 # Referensi : 
 http://ezine.echo.or.id/ezine19/e19.004.txt
