@@ -20,7 +20,7 @@ RSA adalah salah satu algoritma kriptografi yang menggunakan konsep kriptografi 
 
 **B.  Digital Signature**
 
-Digital Signature Tanda tangan dijital adalah bentuk tiruan tanda tangan konvensional ke dalam bentuk dijital. Tetapi bukan file scan tanda tangan dikertas. Sebutan digital signature ini sebenarnya konsep. Dalam dunia nyata, tanda tangan dijital itu bentuknya adalah rangkaian byte-byte yang jika diperiksa bisa digunakan untuk memeriksa apakah suatu dokumen dijital, juga termasuk email, benar berasal dari orang tertentu atau tidak.
+Digital Signature adalah bentuk tiruan tanda tangan konvensional ke dalam bentuk digital. Tetapi bukan file scan tanda tangan dikertas. Sebutan digital signature ini sebenarnya konsep. Dalam dunia nyata, tanda tangan digital itu bentuknya adalah rangkaian byte-byte yang jika diperiksa bisa digunakan untuk memeriksa apakah suatu dokumen digital, juga termasuk email, benar berasal dari orang tertentu atau tidak.
 
 **C.  Client Server**
 
