@@ -13,7 +13,7 @@ Enkripsi dilakukan pada saat pengiriman dengan cara mengubah data asli menjadi d
 
 Terdapat banyak algoritma untuk mengimplementasikan teknik enkripsi dekripsi, salah satunya adalah RSA, dimana kunci yang digunakan untuk mengenkripsi berbeda dengan yang digunakan untuk mendekripsi. Kunci yang digunakan untuk mengenkripsi disebut dengan kunci public, dan yang digunakan untuk mendekripsi disebut dengan kunci privat, sehingga dengan begitu maka  pengiriman pesan akan lebih aman.
 
-e## Dasar Teori
+## Dasar Teori
 **A. RSA**
 
 RSA adalah salah satu algoritma kriptografi yang menggunakan konsep kriptografi kunci publik. RSA membutuhkan tiga langkah dalam prosesnya, yaitu pembangkitan kunci, enkripsi, dan dekripsi. Proses enkripsi dan dekripsi merupakan proses yang hampir sama. Jika bilangan acak yang dibangkitkan kuat, maka akan lebih sulit untuk melakukan cracking terhadap pesan. Parameter kuat tidaknya suatu kunci terdapat pada besarnya bilangan acak yang digunakan.
@@ -23,7 +23,7 @@ RSA adalah salah satu algoritma kriptografi yang menggunakan konsep kriptografi 
 Digital Signature adalah bentuk tiruan tanda tangan konvensional ke dalam bentuk digital. Tetapi bukan file scan tanda tangan dikertas. Sebutan digital signature ini sebenarnya konsep. Dalam dunia nyata, tanda tangan digital itu bentuknya adalah rangkaian byte-byte yang jika diperiksa bisa digunakan untuk memeriksa apakah suatu dokumen digital, juga termasuk email, benar berasal dari orang tertentu atau tidak.
 
 **C.  Client Server**
-m
+
 Client Server adalah suatu bentuk arsitektur dimana client adalah perangkat yang menerima yang akan menampilkan dan menjalankan aplikasi (software komputer) dan server adalah perangkat yang menyediakan dan bertindak sebagai pengelola aplikasi, data, dan keamanannya.
 
 **D. Sniffer**
@@ -73,7 +73,7 @@ Setelah host attacker menjadi host yang berada di tengah-tengah dari dua host ya
 
 ![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b3.PNG)
 
-- Pengirim mengenkripsi pesan dengan kunci publik dan mengirimkannya. Adapun fungsi dekripsi adalah C = M^e mod n
+- Pengirim mengenkripsi pesan dengan kunci publik dan mengirimkannya. Adapun fungsi enkripsi adalah C = M^e mod n
 
 ![alt_tag](https://github.com/incursio13/kij/blob/master/Doc/b4.PNG)
 
